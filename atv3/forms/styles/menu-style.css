@@ -1,0 +1,51 @@
+/* Estilos para o corpo */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header e Footer */
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 40px 0;
+}
+
+/* Social Icons */
+footer .social-icons a {
+    color: white;
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+footer .social-icons a:hover {
+    color: #007bff;
+}
+
+/* Conteúdo */
+.container {
+    margin-top: 20px;
+}
+
+/* Estilos Responsivos */
+@media (max-width: 600px) {
+    header, footer {
+        padding: 15px;
+        font-size: 18px;
+    }
+    .container {
+        padding: 15px;
+        font-size: 14px;
+    }
+}

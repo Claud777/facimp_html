@@ -1,0 +1,70 @@
+/* Estilos para o corpo */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#notasform{
+    margin-left: 10px;
+}
+main {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    flex: 1;
+    padding: 20px;
+}
+
+/* Custom Footer Styling */
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 40px 0;
+    margin-left: 0;
+}
+
+footer .social-icons a {
+    color: white;
+    margin-right: 15px;
+}
+
+footer .social-icons a:hover {
+    color: #007bff;
+}
+
+/* Estilos responsivos */
+@media (max-width: 600px) {
+    header, footer {
+        padding: 15px 10px;
+        font-size: 18px;
+    }
+    main {
+        padding: 15px;
+        font-size: 14px;
+        align-content: center;
+    }
+}
+button {
+    display: block;           
+    margin-left: 10px;           
+    margin-top: 20px;
+    margin-bottom: 10px;         
+    position: relative;
+
+    padding: 10px 20px;         
+    font-size: 14px;
+    width: 150px;
+}
+
+#contagem{
+    color: red;
+    text-align: center;
+    
+}
+
+#caixanum{
+    margin-left: 10px;
+}

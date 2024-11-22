@@ -1,0 +1,1 @@
+Para a esquematização do design do site, usaremos o [Figma](https://www.figma.com/design/VWI04zBzJwgoTYsnkMWALt/Projeto-HTML%2C-CSS%2C-PHP-e-JavaScript?node-id=0-1&node-type=canvas&t=i5DMH88lZNcrJ7wV-0)

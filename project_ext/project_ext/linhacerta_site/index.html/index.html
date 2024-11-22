@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linhas de Transporte - Imperatriz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+
+    header {
+      background-color: #2b3a85;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .logo {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo span {
+      font-family: 'Poppins', sans-serif;
+      color: #FFA500; /* Laranja */
+      font-size: 1.5rem; /* Aumentar o tamanho da fonte */
+      font-weight: bold; /* Deixar a palavra mais grossa */
+      letter-spacing: 2px; /* Aumentar o espaçamento entre as letras */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Efeito de sombra */
+      margin-right: 0.7rem;
+    }
+
+    .menu {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .menu a {
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    input#searchInput {
+      width: 65%;
+      padding: 0.6rem;
+      margin-top: 2rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 4px;
+    }
+
+    .title {
+      font-size: 1.5rem;
+      margin-top: 1rem;
+      color: white;
+    }
+
+    .tab-content {
+      display: none;
+      padding: 1rem;
+    }
+
+    .active-tab {
+      display: flex;
+      width: 100%;
+    }
+
+    main {
+      display: flex;
+      padding: 1rem;
+      flex-wrap: wrap;
+    }
+
+    #routesList {
+      flex: 2;
+      min-width: 300px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .route-card {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .route-card h3 {
+      margin: 0;
+      color: #2a3b8f;
+    }
+
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    .schedule-table th, .schedule-table td {
+      border: 1px solid #ddd;
+      padding: 0.5rem;
+      text-align: center;
+    }
+
+    .mapaBox {
+      flex: 1;
+      min-width: 300px;
+      padding: 1rem;
+    }
+
+    .mapaBox iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 450px;
+      border: 0;
+    }
+
+    .route-planner {
+      max-width: 800px;
+      margin: auto;
+      padding: 1rem;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .route-form label {
+      font-weight: bold;
+    }
+
+    .route-form input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+
+    .route-form button {
+      background-color: #2b3a85;
+      color: white;
+      padding: 0.7rem;
+      width: 100%;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .results {
+      margin-top: 1.5rem;
+    }
+
+    .route-card {
+      margin-bottom: 1rem;
+    }
+
+    .newsBox {
+      flex: 1;
+      min-width: 300px;
+      padding: 1rem;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .newsBox h3 {
+      margin-top: 0;
+      color: #2a3b8f;
+    }
+
+    .news-item {
+      margin-bottom: 1rem;
+    }
+
+    .news-item h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .news-item p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    @media screen and (max-width: 768px) {
+      .logo span {
+        font-size: 1.2rem;
+      }
+      .menu {
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+      input#searchInput {
+        width: 90%;
+        font-size: 0.9rem;
+      }
+      .title {
+        font-size: 1.2rem;
+      }
+      main {
+        flex-direction: column;
+        align-items: center;
+      }
+      #routesList {
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+      }
+      .mapaBox {
+        width: 100%;
+        min-height: 300px;
+      }
+      .route-card {
+        padding: 0.8rem;
+      }
+      .newsBox {
+        margin-top: 1rem;
+        width: 100%;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .logo span {
+        display: none;
+      }
+      input#searchInput {
+        font-size: 0.8rem;
+      }
+      .route-form input,
+      .route-form button {
+        font-size: 0.8rem;
+        padding: 0.4rem;
+      }
+      .schedule-table th, 
+      .schedule-table td {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <span>LinhaCerta</span>
+      <img src="Design_sem_nome_2.png" width="40px" height="40px">
+    </div>
+    <div class="menu">
+      <a onclick="showTab('routes')">Linhas de Ônibus</a>
+      <a onclick="showTab('planner')">Planejar Rota</a>
+    </div>
+    <input type="text" id="searchInput" placeholder="Pesquisar linha ou rota">
+    <div class="title">Linhas de Transporte - Imperatriz</div>
+  </header>
+
+  <main>
+    <section id="routes" class="tab-content active-tab">
+      <section id="routesList">
+        <!-- Rotas e horários de ônibus -->
+      </section>
+      <div class="mapaBox">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15886.190194072959!2d-47.438721449999996!3d-5.4853632!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-BR!2sbr!4v1731443405049!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </section>
+
+    <section id="planner" class="tab-content">
+      <div class="route-planner">
+        <h2>Planeje sua Rota</h2>
+        <form class="route-form">
+          <label for="departure">Local de Partida:</label>
+          <input type="text" id="departure" placeholder="Digite seu ponto de partida">
+          
+          <label for="arrival">Local de Chegada:</label>
+          <input type="text" id="arrival" placeholder="Digite seu destino">
+
+          <button type="button" onclick="findRoute()">Pesquisar Rota</button>
+        </form>
+
+        <div class="results" id="results"></div>
+      </div>
+      <div class="newsBox">
+        <h3>Notícias de Hoje</h3>
+        <div class="news-item">
+          <h4>Previsão do Tempo</h4>
+          <p>Hoje em Imperatriz, espera-se tempo ensolarado com máxima de 32°C e mínima de 22°C. Não há previsão de chuva.</p>
+        </div>
+        <div class="news-item">
+          <h4>Política Local</h4>
+          <p>A câmara municipal de Imperatriz vai discutir projetos de infraestrutura no próximo encontro, focando em melhorias no transporte público.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const routes = [
+      { line: "Linha 101", schedule: ["05:00", "06:00", "07:00", "08:00", "09:00"], stops: ["Centro", "São José", "Vila Nova", "Parque do Buriti"] },
+      { line: "Linha 102", schedule: ["05:30", "06:30", "07:30", "08:30", "09:30"], stops: ["Vila Macedo", "São Raimundo", "Vila Cafeteira", "Centro"] },
+      { line: "Linha 103", schedule: ["06:00", "07:00", "08:00", "09:00", "10:00"], stops: ["Bairro da Liberdade", "Bairro Bacuri", "Aeroporto"] },
+      { line: "Linha 104", schedule: ["05:15", "06:15", "07:15", "08:15", "09:15"], stops: ["Imperatriz Shopping", "Vila Redenção", "Centro"] },
+      { line: "Linha 105", schedule: ["06:30", "07:30", "08:30", "09:30", "10:30"], stops: ["Vila Marli", "Bairro São José", "Parque de Exposições"] },
+      // Mais linhas e horários podem ser adicionados conforme necessário
+    ];
+
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', function () {
+      const searchQuery = searchInput.value.toLowerCase();
+      const filteredRoutes = routes.filter(route =>
+        route.line.toLowerCase().includes(searchQuery)
+      );
+      updateRouteList(filteredRoutes);
+    });
+
+    function showTab(tabName) {
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active-tab');
+      });
+      document.getElementById(tabName).classList.add('active-tab');
+    }
+
+    function updateRouteList(filteredRoutes) {
+      const routesList = document.getElementById('routesList');
+      routesList.innerHTML = '';
+      filteredRoutes.forEach(route => {
+        const routeCard = document.createElement('div');
+        routeCard.classList.add('route-card');
+        routeCard.innerHTML = `
+          <h3>${route.line}</h3>
+          <h4>Paradas:</h4>
+          <ul>
+            ${route.stops.map(stop => `<li>${stop}</li>`).join('')}
+          </ul>
+          <table class="schedule-table">
+            <thead>
+              <tr><th>Horário</th></tr>
+            </thead>
+            <tbody>
+              ${route.schedule.map(time => `<tr><td>${time}</td></tr>`).join('')}
+            </tbody>
+          </table>
+        `;
+        routesList.appendChild(routeCard);
+      });
+    }
+
+    function findRoute() {
+      const departure = document.getElementById('departure').value;
+      const arrival = document.getElementById('arrival').value;
+      const possibleRoutes = routes.filter(route => route.stops.includes(departure) && route.stops.includes(arrival));
+
+      let resultHTML = `<h3>Resultado da Pesquisa</h3>`;
+      if (possibleRoutes.length > 0) {
+        possibleRoutes.forEach(route => {
+          resultHTML += `
+            <div class="route-card">
+              <h4>Rota: ${route.line}</h4>
+              <p><strong>Partida:</strong> ${departure}</p>
+              <p><strong>Destino:</strong> ${arrival}</p>
+              <h5>Horários Disponíveis:</h5>
+              <ul>
+                ${route.schedule.map(time => `<li>${time}</li>`).join('')}
+              </ul>
+            </div>
+          `;
+        });
+      } else {
+        resultHTML += `<p>Não há rotas disponíveis entre esses pontos.</p>`;
+      }
+
+      document.getElementById('results').innerHTML = resultHTML;
+    }
+
+    updateRouteList(routes); // Inicializa com as rotas padrão
+  </script>
+
+<!-- rodape do site -->
+
+  <footer style="background-color: #2b3a85; color: white; padding: 2rem 1rem; text-align: center;">
+  <div style="max-width: 800px; margin: auto; font-size: 0.9rem;">
+    <h3 style="margin-top: 0; font-size: 1.5rem;">Sobre o Projeto</h3>
+    <p>
+      O projeto <strong>LinhaCerta</strong> nasceu da necessidade de informatizar o sistema de transporte público
+      nas regiões onde a tecnologia encontra dificuldades para evoluir no uso diário. Nosso objetivo é tornar
+      o transporte mais acessível, prático e eficiente para todos.
+    </p>
+    <hr style="border: 0; height: 1px; background-color: #fff; margin: 1.5rem 0;">
+    <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+      <div style="min-width: 200px;">
+        <h4>Contato com o Suporte</h4>
+        <p>Email: <a href="mailto:suporte@linhacerta.com" style="color: #FFA500;">igorbrgon@gmail.com</a></p>
+        <p>Telefone: (99) 9194-7859</p>
+      </div>
+      <div style="min-width: 200px;">
+        <h4>Redes Sociais</h4>
+        <p><a href="https://www.instagram.com/dudiinhassp/" style="color: #FFA500;">Instagram</a> <a href="https://www.instagram.com/igu.znx?igsh=MXg1eWo0c3c5amxoag%3D%3D" style="color: #FFA500;">Instagram</a> <a href="https://www.instagram.com/claud_pg?igsh=NW80NW1qM3pndzJv" style="color: #FFA500;">Instagram</a> </p><a href="https://www.instagram.com/bruno.alv35?igsh=bXcxdDQ1amhtcjBj" style="color: #FFA500;">Instagram</a></p><a href="https://www.instagram.com/pessoa__cesar?igsh=Z3o5bmE5OTYxNDgx" style="color: #FFA500;">Instagram</a></p>
+        </div>
+      <div style="min-width: 200px;">
+        <h4>Equipe do Projeto</h4>
+        <p>Cláudio Rafael Pereira Gomes || Paulo César Pessoa Souza || Bruno das Neves Alves || Igor Gonçalo Lima Fonseca || Maria Eduarda Pereira ||</p>
+        <p>Email para contato: <a href="mailto:contato@linhacerta.com" style="color: #FFA500;">igorbrgon@gmail.com</a></p>
+      </div>
+    </div>
+    <hr style="border: 0; height: 1px; background-color: #fff; margin: 1.5rem 0;">
+  </div>
+</footer>
+
+</body>
+</html>

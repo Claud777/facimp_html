@@ -1,0 +1,104 @@
+/* Estilos para o card que envolve a calculadora */
+#caixacalc {
+    background-color: #262b2f; /* Cor clara para o fundo do card */
+    border-radius: 10px; /* Bordas arredondadas */
+    padding: 20px; /* Espaçamento interno */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para destacar o card */
+    text-align: center;
+    width: 320px; /* Largura fixa para o card */
+    margin: 0 auto; /* Centraliza o card horizontalmente */
+    margin-top: 10px;
+}
+
+/* Estilo para os botões */
+#caixacalc button, #Btn_calcs button {
+    border-color: cadetblue;
+    width: 55px; /* Definindo uma largura fixa para os botões */
+    height: 55px; /* Definindo uma altura fixa */
+    margin: 5px; /* Espaçamento entre os botões */
+    font-size: 1.5rem; /* Tamanho da fonte maior para números e símbolos */
+    border-radius: 10px; /* Bordas arredondadas nos botões */
+}
+
+/* Estilo para o display da calculadora */
+#display {
+    border-color: cadetblue;
+    background-color: #799fbdfa;
+    font-size: 1.5rem;
+    margin-bottom: 10px; /* Espaço abaixo do display */
+    margin-left: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: right; /* Alinhando o texto à direita */
+    width: calc(4 * 60px + 3 * 10px); /* Largura do display ajustada para combinar com 4 botões */
+    height: 55px; /* Mesmo altura que os botões */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra interna para dar profundidade */
+}
+
+/* Estilos para o layout dos botões (alinhando sinais ao lado dos números) */
+.row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#caixacalc, #Btn_calcs {
+    gap: 10px; /* Espaçamento entre os botões */
+}
+
+#Btn_calcs {
+    flex-direction: column; /* Coloca os botões de operações matemáticas em coluna */
+    gap: 5px; /* Pequeno espaçamento entre os botões de operações */
+}
+
+/* Estilos para o corpo */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header e Footer */
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 40px 0;
+}
+
+/* Social Icons */
+footer .social-icons a {
+    color: white;
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+footer .social-icons a:hover {
+    color: #007bff;
+}
+
+/* Melhorar responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+    #caixacalc button, #Btn_calcs button {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+
+    #caixacalc {
+        width: 280px; /* Largura menor para dispositivos móveis */
+    }
+
+    #display {
+        height: 50px; /* Ajusta a altura para corresponder aos botões em telas menores */
+    }
+}
